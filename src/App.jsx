@@ -13,6 +13,10 @@ import { useLocation } from 'react-router-dom';
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminPanel from './pages/admin/AdminPanel';
 import Inventory from './pages/admin/Inventory';
+import OurServices from './components/OurService/OurService';
+import ExploreMenu from './components/ExploreMenu/ExploreMenu';
+import FoodDisplay from './components/FoodDisplay/FoodDisplay';
+
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -51,7 +55,8 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/order" element={<PlaceOrder />} />
+          <Route path='/menu' element= {<> <ExploreMenu/><FoodDisplay category={'All'}/></>} />
+          <Route path="/service" element={<OurServices/>} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminPanel />} />
             <Route path="inventory" element={<Inventory />} />

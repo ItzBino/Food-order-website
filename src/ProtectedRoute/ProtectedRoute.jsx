@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 
 const ProtectedRoute = ({ children, loggedInUser, setShowLogin }) => {
   if (!loggedInUser) {
-    setShowLogin(true); 
     toast.warning("Please log in to access this page", { toastId: 'login-warning' });
+    console.log(children)
     return <Navigate to="/" />; 
   }
 

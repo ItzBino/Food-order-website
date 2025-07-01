@@ -15,8 +15,8 @@ const Navbar = ({setShowLogin,loggedInUser,setLoggedInUser}) => {
             <img src={null} alt="" className='logo' />
             <ul className="navbar-menu  dark:text-white">
                 <li><NavLink className={(e) => { return e.isActive ? "active" : '' }} to='/'>Home</NavLink></li>
-                <li><NavLink className={(e) => { return e.isActive ? "active" : '' }} to='/about'>Menu</NavLink></li>
-                <li><NavLink className={(e) => { return e.isActive ? "active" : '' }} to='/user'>contact us</NavLink></li>
+                <li><NavLink className={(e) => { return e.isActive ? "active" : '' }} to='/menu'>Menu</NavLink></li>
+                <li><NavLink className={(e) => { return e.isActive ? "active" : '' }} to='/service'>our service</NavLink></li>
             </ul>
             <div className="navbar-right">
                     <ThemeToggle />
@@ -30,14 +30,14 @@ const Navbar = ({setShowLogin,loggedInUser,setLoggedInUser}) => {
                 </div>
                {
           loggedInUser ? (
-            <button className='bg-[#8f0909] p-2 text-white rounded text-1xl' onClick={() => {
+            <button className='bg-[#8f0909] p-2 text-white rounded text-1xl dark:bg-orange-600' onClick={() => {
               localStorage.removeItem("user");
               setLoggedInUser(null); 
             }}>
               Logout
             </button>
           ) : (
-            <button onClick={() => setShowLogin(true)} className='bg-[#52230F] p-2 text-white rounded text-1xl'>Sign In</button>
+            <button onClick={() => setShowLogin(true)} className='bg-[#52230F] p-2 text-white rounded text-1xl dark:bg-orange-600'>Sign In</button>
           )
         }
             </div>
