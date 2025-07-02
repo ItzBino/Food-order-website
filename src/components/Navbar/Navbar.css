@@ -105,7 +105,8 @@
         display: none;
     }
     .navbar-right{
-        justify-content: space-evenly;
+    
+        justify-content: space-around;
     }
 
     .navbar-right img{
