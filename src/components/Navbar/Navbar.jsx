@@ -36,8 +36,11 @@ const Navbar = ({setShowLogin,loggedInUser,setLoggedInUser}) => {
             }}>
               Logout
             </button>
-          ) : (
-            <button onClick={() => setShowLogin(true)} className='bg-[#52230F] p-2 text-white rounded text-1xl dark:bg-orange-600'>Sign In</button>
+          ) : (<>
+            <button onClick={() => setShowLogin(true)} className='bg-[#52230F] p-2 text-white rounded  dark:bg-orange-600'>Sign In</button>
+           <NavLink to='/admin'><button className='text-white bg-red-900 p-2 font-bold rounded'>Admin</button></NavLink> 
+          </>
+          
           )
         }
             </div>
