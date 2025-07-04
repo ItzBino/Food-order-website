@@ -18,7 +18,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="flex justify-center items-center   h-80 bg-gray-100 dark:bg-black">
+    <div className="flex justify-center items-center   h-96 bg-gray-100 dark:bg-black">
       <div className="bg-white dark:bg-gray-800 p-6 rounded shadow-md w-96">
         <h2 className="text-2xl font-bold mb-4 text-center text-gray-800 dark:text-white">Admin Login</h2>
         <input
