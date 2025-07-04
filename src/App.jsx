@@ -5,11 +5,13 @@ import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Footer from './components/Footer/Footer';
+import AdminLogin from './components/Admin/AdminLogin';
 import LoginPopup from './components/LoginPopup/LoginPopup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
-import { useLocation } from 'react-router-dom'; 
+import AdminProtectedRoute from './ProtectedRoute/AdminProtectedRoute';
+import { useLocation } from 'react-router-dom';
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminPanel from './pages/admin/AdminPanel';
 import Inventory from './pages/admin/Inventory';
@@ -24,9 +26,20 @@ const App = () => {
     JSON.parse(localStorage.getItem('user'))
   );
 
-  const location = useLocation(); 
+  const location = useLocation();
 
-  const isAdminPage = location.pathname.startsWith('/admin'); 
+  const isAdminPage = location.pathname.startsWith('/admin');
+  const isAdminLoginPage = location.pathname === '/admin-login';
+
+
+  if (!localStorage.getItem('admin')) {
+  localStorage.setItem('admin', JSON.stringify({
+    username: 'admin',
+    password: 'admin123',
+    isAdminLoggedIn: false
+  }));
+}
+
 
   return (
     <>
@@ -38,7 +51,7 @@ const App = () => {
         />
       )}
       <div className="app min-h-screen bg-white text-black dark:bg-[#121212] dark:text-white">
-        {!isAdminPage && (
+        {!isAdminPage && !isAdminLoginPage &&(
           <Navbar
             setShowLogin={setShowLogin}
             loggedInUser={loggedInUser}
@@ -55,14 +68,24 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path='/menu' element= {<> <ExploreMenu/><FoodDisplay category={'All'}/></>} />
-          <Route path="/service" element={<OurServices/>} />
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path='/menu' element={<> <ExploreMenu /><FoodDisplay category={'All'} /></>} />
+          <Route path="/service" element={<OurServices />} />
+          <Route path="/admin-login" element={<><Navbar/> <AdminLogin /></>} />
+
+          <Route
+            path="/admin"
+            element={
+              <AdminProtectedRoute>
+                <AdminLayout />
+              </AdminProtectedRoute>
+            }
+          >
             <Route index element={<AdminPanel />} />
             <Route path="inventory" element={<Inventory />} />
           </Route>
+
         </Routes>
-        
+
       </div>
       {!isAdminPage && <Footer />}
     </>
